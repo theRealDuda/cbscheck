@@ -9,8 +9,10 @@ from PyQt6.QtWidgets import (QMainWindow,
 from cbs import is_cbs, need_to_move
 
 class AboutWindow(QMainWindow):
-    """Class for the About section window
-    doesnt have much
+    """
+    Defines the about window. Just text and general behaviour.
+    Args:
+        QMainWindow (QMainWindow_): The about window.
     """
     def __init__(self):
         super().__init__()
@@ -36,7 +38,7 @@ class AboutWindow(QMainWindow):
 
         self.setCentralWidget(container)
 
-def start_about():
+def start_about() -> None:
     """Function used for staring the about
     window in a way that saves it from the GC
     I think it is needed for the about window
@@ -45,9 +47,20 @@ def start_about():
     return about
 
 class MainWindow(QMainWindow):
-    """class for the main window funcitonality
+    """The main window class.
+    Handles input, parsing is delegated to the cbs module.
+    Args:
+        QMainWindow (QMainWindow): The main window.
     """
     def __init__(self):
+        """Sets up constants, widgets and handles signals.
+        Those signals are:
+        button.clicked.connect(self.get_result) which is the check button
+
+        self.about_button.clicked.connect(self.show_about) which is the about window
+
+        input.returnPressed.connect(self.get_result) for input using the return key
+        """
         super().__init__()
 
         self.about_wnd = AboutWindow()
@@ -84,7 +97,7 @@ class MainWindow(QMainWindow):
 
         self.button.clicked.connect(self.get_result)
 
-        self.aboutButton.clicked.connect(self.show_about)
+        self.about_button.clicked.connect(self.show_about)
         self.input.returnPressed.connect(self.get_result)
 
         container = QWidget()
@@ -115,8 +128,8 @@ class MainWindow(QMainWindow):
 
     def show_about(self):
         """Function used for getting the
-             about window up and running
-             very important!
+             about window up and running.
+             Very important!
              """
         self.about_wnd = start_about()
         self.about_wnd.show()
