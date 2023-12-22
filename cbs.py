@@ -6,8 +6,13 @@ need_to_move(list) -> int
 all work on a sequence of characters
 """
 def is_cbs(sequence) -> bool:
-    """returns a bool that has the sequence's correctness
-    checks ONLY the correctness of BRACES in a sequence of chars
+    """Check the input and returns its correctness
+
+    Args:
+        sequence (list): a sequence of characters
+
+    Returns:
+        bool: a boolean representing the sequences correctness
     """
     stack = []
     for char in sequence:
@@ -25,8 +30,14 @@ def is_cbs(sequence) -> bool:
     return False
 
 def need_to_move(sequence) -> int:
-    """returns the amount of moves* needed to fix the sequence to a cbs
+    """function used for finding the amount of moves 
+    needed to turn a sequence into a correct one
     *moves - as in addition of characters or their movement
+    Args:
+        sequence (list): a sequence of characters
+
+    Returns:
+        int: the amount of moves needed
     """
     stack = []
     for char in sequence:
